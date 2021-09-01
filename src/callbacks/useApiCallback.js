@@ -2,7 +2,7 @@ import {useState, useEffect, useCallback} from "react";
 import {toast} from "react-toastify";
 
 const useApiCallback = (callback, callImmediately = false)  => {
-    const apiUrl = 'http://api.ipstack.com/';
+    const apiUrl = 'https://api.ipstack.com/';
     const apiKey = '9351a09e6cf07263f02e4d6f0b17227b';
 
     const [data, updateData] = useState({});
