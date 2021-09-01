@@ -4,7 +4,7 @@ function SearchHistoryList({list}) {
             <h5>Search history:</h5>
             <ul className="list-group list-group-flush">
                 {list.map((item) => (
-                    <li className="list-group-item">{item.ip}</li>
+                    <li className="list-group-item">{item}</li>
                 ))}
             </ul>
         </div>

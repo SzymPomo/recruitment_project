@@ -1,15 +1,22 @@
 import {Formik} from 'formik';
 import useApiCallback from "../callbacks/useApiCallback";
 
-function SearchBar ({onLocationFound}) {
+function SearchBar ({updateSearchedLocation, updateSearchHistory}) {
     const {execute} = useApiCallback('');
 
     function handleSubmit(values, {resetForm}) {
         execute(values.ipAddress).then((response)=> {
-            onLocationFound((state) => {
+            updateSearchedLocation((state) => {
                 return [
                     ...state,
                     response
+                ]
+            });
+
+            updateSearchHistory((state) => {
+                return [
+                    ...state,
+                    values.ipAddress
                 ]
             });
         });

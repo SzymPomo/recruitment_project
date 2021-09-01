@@ -6,6 +6,7 @@ import LocationInfo from "./LocationInfo";
 import useApiCallback from "../callbacks/useApiCallback";
 
 function MainPage() {
+    const [searchedLocation, updateSearchedLocation] = useState([]);
     const [searchHistory, updateSearchHistory] = useState([]);
 
     const {data} = useApiCallback('check', true);
@@ -33,20 +34,21 @@ function MainPage() {
                     <div className={`row my-2`}>
                         <div className={`col-12`}>
                             <SearchBar
-                                onLocationFound={updateSearchHistory}
+                                updateSearchedLocation={updateSearchedLocation}
+                                updateSearchHistory={updateSearchHistory}
                             />
                         </div>
                     </div>
                     <div className={`row`}>
                         <div className={`col-7`}>
                             <LocationMap
-                                location={searchHistory[searchHistory.length - 1] || {}}
+                                location={searchedLocation[searchedLocation.length - 1] || {}}
                             />
                         </div>
                         <div className={`col-5`}>
                             <LocationInfo
                                 label={`Searched location details`}
-                                location={searchHistory[searchHistory.length - 1] || {}}
+                                location={searchedLocation[searchedLocation.length - 1] || {}}
                             />
                         </div>
                     </div>
