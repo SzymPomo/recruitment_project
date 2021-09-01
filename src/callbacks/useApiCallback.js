@@ -10,7 +10,12 @@ const useApiCallback = (callback, callImmediately = false)  => {
     const execute = useCallback(async (newCallback) => {
         const fetchUrl = apiUrl + newCallback + '?access_key=' + apiKey;
 
-        return await fetch(fetchUrl, { headers: { accept: "Accept: application/json" } })
+        return await fetch(fetchUrl,
+            {
+                headers: {
+                    'Access-Control-Allow-Headers': "*"
+                }
+            })
             .then(response => response.json())
             .then((data) => {
                 if (!data.error && data.latitude && data.longitude) {
